@@ -18,4 +18,9 @@ $EM_CONF[$_EXTKEY] = array(
         'conflicts' => array(),
         'suggests' => array(),
     ),
+    'autoload' => array(
+        'psr-4' => array(
+            'TYPO3\\CMS\\Compatibility6\\' => 'Classes',
+        ),
+    ),
 );
