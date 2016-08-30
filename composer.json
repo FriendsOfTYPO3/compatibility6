@@ -1,5 +1,5 @@
 {
-	"name": "typo3/cms-compatibility6",
+	"name": "friendsoftypo3/cms-compatibility6",
 	"type": "typo3-cms-extension",
 	"description": "TYPO3 Core",
 	"homepage": "https://typo3.org",
@@ -9,7 +9,8 @@
 		"typo3/cms-core": "*"
 	},
 	"replace": {
-		"compatibility6": "*"
+		"compatibility6": "self.version",
+		"typo3/cms-compatibility6": "self.version"
 	},
 	"extra": {
 		"typo3/class-alias-loader": {
