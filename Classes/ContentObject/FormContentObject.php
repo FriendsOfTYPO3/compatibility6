@@ -607,7 +607,7 @@ class FormContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractConten
             $badMess = isset($conf['badMess.']) ? $this->cObj->stdWrap($conf['badMess'], $conf['badMess.']) : $conf['badMess'];
             $emailMess = isset($conf['emailMess.']) ? $this->cObj->stdWrap($conf['emailMess'], $conf['emailMess.']) : $conf['emailMess'];
             $validateForm = ' onsubmit="return validateForm(' . GeneralUtility::quoteJSvalue($formName) . ',' . GeneralUtility::quoteJSvalue(implode(',', $fieldlist)) . ',' . GeneralUtility::quoteJSvalue($goodMess) . ',' . GeneralUtility::quoteJSvalue($badMess) . ',' . GeneralUtility::quoteJSvalue($emailMess) . ')"';
-            $GLOBALS['TSFE']->additionalHeaderData['JSFormValidate'] = '<script type="text/javascript" src="' . GeneralUtility::createVersionNumberedFilename(($GLOBALS['TSFE']->absRefPrefix . 'typo3/sysext/compatibility6/Resources/Public/JavaScript/jsfunc.validateform.js')) . '"></script>';
+            $GLOBALS['TSFE']->additionalHeaderData['JSFormValidate'] = '<script type="text/javascript" src="' . GeneralUtility::createVersionNumberedFilename(($GLOBALS['TSFE']->absRefPrefix . \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::siteRelPath('compatibility6') . 'Resources/Public/JavaScript/jsfunc.validateform.js')) . '"></script>';
         } else {
             $validateForm = '';
         }
