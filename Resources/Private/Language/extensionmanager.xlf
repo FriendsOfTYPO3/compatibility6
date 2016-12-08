@@ -6,6 +6,9 @@
 			<trans-unit id="setPageTSconfig">
 				<source>Set PageTSconfig by default: If you are going to use this extension by default in this database then set this flag. In that case you don't need to set specific PageTSconfig for each page, which you have to do otherwise!</source>
 			</trans-unit>
+			<trans-unit id="patchFlexLanguageHandling">
+				<source>Enable the Patch for (re-)adding language handling inside flexforms: only required if one of your flexforms missed &lt;langDisable&gt;1&lt;/langDisable&gt;</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
