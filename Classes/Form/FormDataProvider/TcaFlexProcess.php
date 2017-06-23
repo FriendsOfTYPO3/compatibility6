@@ -395,7 +395,7 @@ class TcaFlexProcess implements FormDataProviderInterface
                 $langSheetLevel = 'l' . $isoSheetLevel;
                 foreach ($dataStructureSheetElements as $dataStructureSheetElementName => $dataStructureSheetElementDefinition) {
                     if (isset($dataStructureSheetElementDefinition['type']) && $dataStructureSheetElementDefinition['type'] === 'array'
-                        && isset($dataStructureSheetElementDefinition['section']) && $dataStructureSheetElementDefinition['section'] === '1'
+                        && isset($dataStructureSheetElementDefinition['section']) && (string)$dataStructureSheetElementDefinition['section'] === '1'
                     ) {
                         // A section
 
