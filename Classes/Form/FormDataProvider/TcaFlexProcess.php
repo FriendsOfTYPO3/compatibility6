@@ -445,6 +445,7 @@ class TcaFlexProcess implements FormDataProviderInterface
                                                             $singleFieldName => $singleFieldConfiguration,
                                                         ],
                                                     ],
+                                                    'flexParentDatabaseRow' => $result['databaseRow'],
                                                 ];
                                                 $flexSegmentResult = $formDataCompiler->compile($inputToFlexFormSegment);
                                                 // Set data value result
@@ -493,6 +494,7 @@ class TcaFlexProcess implements FormDataProviderInterface
                                                         $singleFieldName => $singleFieldConfiguration,
                                                     ],
                                                 ],
+                                                'flexParentDatabaseRow' => $result['databaseRow'],
                                             ];
                                             $flexSegmentResult = $formDataCompiler->compile($inputToFlexFormSegment);
                                             if (array_key_exists($singleFieldName, $flexSegmentResult['databaseRow'])) {
@@ -545,6 +547,7 @@ class TcaFlexProcess implements FormDataProviderInterface
                                         $dataStructureSheetElementName => $dataStructureSheetElementDefinition,
                                     ],
                                 ],
+                                'flexParentDatabaseRow' => $result['databaseRow'],
                             ];
                             $flexSegmentResult = $formDataCompiler->compile($inputToFlexFormSegment);
                             // Set data value result
