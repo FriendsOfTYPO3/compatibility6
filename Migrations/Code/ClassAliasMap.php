@@ -1,5 +1,5 @@
 <?php
-return array(
+return [
     'Tx_About_Controller_AboutController' => \TYPO3\CMS\About\Controller\AboutController::class,
     'Tx_About_Domain_Model_Extension' => \TYPO3\CMS\About\Domain\Model\Extension::class,
     'Tx_About_Domain_Repository_ExtensionRepository' => \TYPO3\CMS\About\Domain\Repository\ExtensionRepository::class,
@@ -1089,4 +1089,4 @@ return array(
     'TYPO3\\CMS\\Frontend\\ContentObject\\FormContentObject' => \TYPO3\CMS\Compatibility6\ContentObject\FormContentObject::class,
     'TYPO3\\CMS\\Frontend\\Controller\\Wizard\\FormsController' => \TYPO3\CMS\Compatibility6\Controller\Wizard\FormsController::class,
     'TYPO3\\CMS\\Frontend\\Controller\\DataSubmissionController' => \TYPO3\CMS\Compatibility6\Controller\FormDataSubmissionController::class
-);
+];

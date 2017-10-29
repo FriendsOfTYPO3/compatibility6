@@ -34,7 +34,7 @@ class FormDataSubmissionController
      *
      * @var array
      */
-    protected $dirtyHeaders = array();
+    protected $dirtyHeaders = [];
 
     /**
      * @var string
@@ -104,7 +104,7 @@ class FormDataSubmissionController
     /**
      * @var array Files to clean up at the end (attachments)
      */
-    protected $temporaryFiles = array();
+    protected $temporaryFiles = [];
 
     /**
      * @var \TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController
@@ -213,7 +213,7 @@ class FormDataSubmissionController
      */
     protected function extractRecipientCopy($bodytext)
     {
-        $fdef = array();
+        $fdef = [];
         //|recipient_copy=hidden|karsten@localhost.localdomain
         preg_match('/^[\\s]*\\|[\\s]*recipient_copy[\\s]*=[\\s]*hidden[\\s]*\\|(.*)$/m', $bodytext, $fdef);
         return $fdef[1] ?: '';
@@ -347,10 +347,10 @@ class FormDataSubmissionController
                 }
                 $this->temporaryFiles[] = $theFile;
             }
-            $from = $this->fromName ? array($this->fromAddress => $this->fromName) : array($this->fromAddress);
+            $from = $this->fromName ? [$this->fromAddress => $this->fromName] : [$this->fromAddress];
             $this->recipient = $this->parseAddresses($valueList['recipient']);
             $this->mailMessage->setSubject($this->subject)->setFrom($from)->setTo($this->recipient)->setPriority($this->priority);
-            $replyTo = $this->replyToName ? array($this->replyToAddress => $this->replyToName) : array($this->replyToAddress);
+            $replyTo = $this->replyToName ? [$this->replyToAddress => $this->replyToName] : [$this->replyToAddress];
             $this->mailMessage->setReplyTo($replyTo);
             $this->mailMessage->getHeaders()->addTextHeader('Organization', $this->organisation);
             if ($valueList['recipient_copy']) {
@@ -401,7 +401,7 @@ class FormDataSubmissionController
         /** @var $addressParser \TYPO3\CMS\Core\Mail\Rfc822AddressesParser */
         $addressParser = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Mail\Rfc822AddressesParser::class, $rawAddresses);
         $addresses = $addressParser->parseAddressList();
-        $addressList = array();
+        $addressList = [];
         foreach ($addresses as $address) {
             if ($address->personal) {
                 // Item with name found ( name <email@example.org> )
@@ -431,8 +431,8 @@ class FormDataSubmissionController
             $theParts = explode('/', $this->autoRespondMessage, 2);
             $theParts[0] = str_replace('###SUBJECT###', $this->subject, $theParts[0]);
             $theParts[1] = str_replace(
-                array('/', '###MESSAGE###'),
-                array(LF, $this->plainContent),
+                ['/', '###MESSAGE###'],
+                [LF, $this->plainContent],
                 $theParts[1]
             );
             /** @var $autoRespondMail \TYPO3\CMS\Core\Mail\MailMessage */

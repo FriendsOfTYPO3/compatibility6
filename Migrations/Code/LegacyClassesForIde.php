@@ -9812,4 +9812,3 @@ namespace TYPO3\CMS\Frontend\Controller {
     {
     }
 }
-

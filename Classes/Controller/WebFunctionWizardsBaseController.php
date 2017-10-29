@@ -50,9 +50,9 @@ class WebFunctionWizardsBaseController extends \TYPO3\CMS\Backend\Module\Abstrac
     public function modMenu()
     {
         $GLOBALS['LANG']->includeLLFile('EXT:compatibility6/Resources/Private/Language/wizards.xlf');
-        $modMenuAdd = array(
-            $this->function_key => array()
-        );
+        $modMenuAdd = [
+            $this->function_key => []
+        ];
         $modMenuAdd[$this->function_key] = $this->pObj->mergeExternalItems($this->pObj->MCONF['name'], $this->function_key, $modMenuAdd[$this->function_key]);
         $modMenuAdd[$this->function_key] = \TYPO3\CMS\Backend\Utility\BackendUtility::unsetMenuItems(
             $this->pObj->modTSconfig['properties'],

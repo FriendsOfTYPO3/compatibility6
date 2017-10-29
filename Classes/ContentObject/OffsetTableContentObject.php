@@ -53,7 +53,7 @@ class OffsetTableContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstrac
      * @param array $conf Array of TypoScript properties
      * @return string Output
      */
-    public function render($conf = array())
+    public function render($conf = [])
     {
         $tableParams = isset($conf['tableParams.']) ? $this->cObj->stdWrap($conf['tableParams'], $conf['tableParams.']) : $conf['tableParams'];
         if ($tableParams) {
@@ -86,7 +86,7 @@ class OffsetTableContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstrac
             // Init:
             $this->begin = LF . '<table ' . $this->tableParams . '>';
             $this->end = '</table>';
-            $rows = array();
+            $rows = [];
             $widthImg = '';
             $heightImg = '';
             // If width is required, set so bottom column will display for sure

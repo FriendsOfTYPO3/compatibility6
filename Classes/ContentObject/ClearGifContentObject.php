@@ -25,7 +25,7 @@ class ClearGifContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractCo
      * @param array $conf Array of TypoScript properties
      * @return string Output
      */
-    public function render($conf = array())
+    public function render($conf = [])
     {
         $width = isset($conf['width.']) ? $this->cObj->stdWrap($conf['width'], $conf['width.']) : $conf['width'];
         if (!$width) {

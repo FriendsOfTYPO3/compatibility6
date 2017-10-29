@@ -14,8 +14,8 @@ namespace TYPO3\CMS\Compatibility6\Controller\Wizard;
  * The TYPO3 project - inspiring people to share!
  */
 
-use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
@@ -257,14 +257,14 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
      */
     protected function getButtons()
     {
-        $buttons = array(
+        $buttons = [
             'csh' => '',
             'csh_buttons' => '',
             'close' => '',
             'save' => '',
             'save_close' => '',
             'reload' => ''
-        );
+        ];
         if ($this->P['table'] && $this->P['field'] && $this->P['uid']) {
             // CSH
             $buttons['csh'] = BackendUtility::cshItem('xMOD_csh_corebe', 'wizard_forms_wiz');
@@ -344,13 +344,13 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
                 $tce = GeneralUtility::makeInstance(\TYPO3\CMS\Core\DataHandling\DataHandler::class);
                 $tce->stripslashes_values = 0;
                 // Put content into the data array:
-                $data = array();
+                $data = [];
                 $data[$this->P['table']][$this->P['uid']][$this->P['field']] = $bodyText;
                 if ($this->special == 'formtype_mail') {
                     $data[$this->P['table']][$this->P['uid']]['subheader'] = $this->FORMCFG['recipient'];
                 }
                 // Perform the update:
-                $tce->start($data, array());
+                $tce->start($data, []);
                 $tce->process_datamap();
                 // Re-load the record content:
                 $row = BackendUtility::getRecord($this->P['table'], $this->P['uid']);
@@ -367,7 +367,7 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
                 // Regular linebased form configuration:
                 $cfgArr = $this->cfgString2CfgArray($row[$this->P['field']]);
             }
-            $cfgArr = is_array($cfgArr) ? $cfgArr : array();
+            $cfgArr = is_array($cfgArr) ? $cfgArr : [];
         }
         // Return configuration code:
         return $cfgArr;
@@ -384,15 +384,15 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
     public function getFormHTML($formCfgArray, $row)
     {
         // Initialize variables:
-        $specParts = array();
-        $hiddenFields = array();
-        $tRows = array();
+        $specParts = [];
+        $hiddenFields = [];
+        $tRows = [];
         // Set header row:
-        $cells = array(
+        $cells = [
             $this->getLanguageService()->getLL('forms_preview', true) . ':',
             $this->getLanguageService()->getLL('forms_element', true) . ':',
             $this->getLanguageService()->getLL('forms_config', true) . ':'
-        );
+        ];
         $tRows[] = '
 			<tr id="typo3-formWizardHeader">
 				<th>&nbsp;</th>
@@ -403,7 +403,7 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
         $k = 0;
         foreach ($formCfgArray as $confData) {
             // Initialize:
-            $cells = array();
+            $cells = [];
             // If there is a configuration line which is active, then render it:
             if (!isset($confData['comment'])) {
                 // Special parts:
@@ -413,9 +413,9 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
                     // Render title/field preview COLUMN
                     $cells[] = $confData['type'] != 'hidden' ? '<strong>' . htmlspecialchars($confData['label']) . '</strong>' : '';
                     // Render general type/title COLUMN:
-                    $temp_cells = array();
+                    $temp_cells = [];
                     // Field type selector:
-                    $opt = array();
+                    $opt = [];
                     $opt[] = '<option value=""></option>';
                     $types = explode(',', 'input,textarea,select,check,radio,password,file,hidden,submit,property,label');
                     foreach ($types as $t) {
@@ -438,7 +438,7 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
                     // Put sub-items together into table cell:
                     $cells[] = $this->formatCells($temp_cells);
                     // Render specific field configuration COLUMN:
-                    $temp_cells = array();
+                    $temp_cells = [];
                     // Fieldname
                     if ($this->special == 'formtype_mail' && $confData['type'] == 'file') {
                         $confData['fieldname'] = 'attachment' . ++$this->attachmentCounter;
@@ -627,7 +627,7 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
                         unset($this->FORMCFG['c'][$kk]);
                         break;
                     case 'row_add':
-                        $this->FORMCFG['c'][$kk + 1] = array();
+                        $this->FORMCFG['c'][$kk + 1] = [];
                         break;
                     case 'row_top':
                         $this->FORMCFG['c'][1] = $this->FORMCFG['c'][$kk];
@@ -661,7 +661,7 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
     public function cfgArray2CfgString($cfgArr)
     {
         // Initialize:
-        $inLines = array();
+        $inLines = [];
         // Traverse the elements of the form wizard and transform the settings into configuration code.
         foreach ($cfgArr as $vv) {
             // If "content" is found, then just pass it over.
@@ -670,14 +670,14 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
             } else {
                 // Begin to put together the single-line configuration code of this field:
                 // Reset:
-                $thisLine = array();
+                $thisLine = [];
                 // Set Label:
                 $thisLine[0] = str_replace('|', '', $vv['label']);
                 // Set Type:
                 if ($vv['type']) {
                     $thisLine[1] = ($vv['required'] ? '*' : '') . str_replace(',', '', (($vv['fieldname'] ? $vv['fieldname'] . '=' : '') . $vv['type']));
                     // Default:
-                    $tArr = array('', '', '', '', '', '');
+                    $tArr = ['', '', '', '', '', ''];
                     switch ((string)$vv['type']) {
                         case 'textarea':
                             if ((int)$vv['cols']) {
@@ -735,9 +735,10 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
                     if ($vv['type'] == 'select' || $vv['type'] == 'radio') {
                         $options = str_replace(',', '', $vv['options']);
                         $options = str_replace(
-                            array(CRLF, CR, LF),
+                            [CRLF, CR, LF],
                             ', ',
-                            $options);
+                            $options
+                        );
                         $thisLine[2] = $options;
                     } elseif ($vv['type'] == 'check') {
                         if ($vv['default']) {
@@ -774,7 +775,7 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
         $attachmentCounter = 0;
         foreach ($tLines as $k => $v) {
             // Initialize:
-            $confData = array();
+            $confData = [];
             $val = trim($v);
             // Accept a line as configuration if a) it is blank(! - because blank lines indicates new,
             // unconfigured fields) or b) it is NOT a comment.
@@ -837,9 +838,9 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
                 }
             } else {
                 // No configuration, only a comment:
-                $confData = array(
+                $confData = [
                     'comment' => $val
-                );
+                ];
             }
             // Adding config array:
             $cfgArr[] = $confData;
@@ -877,7 +878,7 @@ class FormsController extends \TYPO3\CMS\Backend\Controller\Wizard\AbstractWizar
     public function formatCells($fArr)
     {
         // Traverse the elements in $fArr and wrap them in table cells:
-        $lines = array();
+        $lines = [];
         foreach ($fArr as $l => $c) {
             $lines[] = '
 				<tr>

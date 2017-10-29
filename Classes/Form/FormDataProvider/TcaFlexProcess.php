@@ -16,7 +16,6 @@ namespace TYPO3\CMS\Compatibility6\Form\FormDataProvider;
 
 use TYPO3\CMS\Backend\Form\FormDataCompiler;
 use TYPO3\CMS\Backend\Form\FormDataGroup\FlexFormSegment;
-use TYPO3\CMS\Backend\Form\FormDataProvider\AbstractItemProvider;
 use TYPO3\CMS\Backend\Form\FormDataProviderInterface;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -518,7 +517,7 @@ class TcaFlexProcess implements FormDataProviderInterface
                             1440685208
                         );
 
-                    // A "normal" TCA element
+                        // A "normal" TCA element
                     } else {
                         foreach ($languagesOnElementLevel as $isoElementLevel) {
                             $langElementLevel = 'v' . $isoElementLevel;

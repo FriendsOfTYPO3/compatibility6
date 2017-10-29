@@ -28,7 +28,7 @@ class SearchResultContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstra
     /**
      * @var array
      */
-    public $tables = array();
+    public $tables = [];
 
     /**
      * Alternatively 'PRIMARY_KEY'; sorting by primary key
@@ -54,15 +54,15 @@ class SearchResultContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstra
      *
      * @var array
      */
-    public $operator_translate_table = array(
-        array('+', 'AND'),
-        array('|', 'AND'),
-        array('-', 'AND NOT'),
+    public $operator_translate_table = [
+        ['+', 'AND'],
+        ['|', 'AND'],
+        ['-', 'AND NOT'],
         // english
-        array('and', 'AND'),
-        array('or', 'OR'),
-        array('not', 'AND NOT')
-    );
+        ['and', 'AND'],
+        ['or', 'OR'],
+        ['not', 'AND NOT']
+    ];
 
     /**
      * Contains the search-words and operators
@@ -137,7 +137,7 @@ class SearchResultContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstra
      * @param array $conf Array of TypoScript properties
      * @return string Output
      */
-    public function render($conf = array())
+    public function render($conf = [])
     {
         if (\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('sword') && \TYPO3\CMS\Core\Utility\GeneralUtility::_GP('scols')) {
             $this->register_and_explode_search_string(\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('sword'));
@@ -168,7 +168,7 @@ class SearchResultContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstra
                         if (!empty($altRootLine)) {
                             // Check if the rootline has the real Level0 in it!!
                             $hitRoot = 0;
-                            $theNewRoot = array();
+                            $theNewRoot = [];
                             foreach ($altRootLine as $val) {
                                 if ($hitRoot || $val['uid'] == $GLOBALS['TSFE']->tmpl->rootLine[0]['uid']) {
                                     $hitRoot = 1;
@@ -235,16 +235,16 @@ class SearchResultContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstra
                 $urlParams = $this->cObj->URLqMark($LD['totalURL'], '&sword=' . rawurlencode(\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('sword')) . '&scols=' . rawurlencode(\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('scols')) . '&stype=' . rawurlencode(\TYPO3\CMS\Core\Utility\GeneralUtility::_GP('stype')) . '&scount=' . $total);
                 // substitution:
                 $result = str_replace(
-                    array(
+                    [
                         '###RANGELOW###',
                         '###RANGEHIGH###',
                         '###TOTAL###'
-                    ),
-                    array(
+                    ],
+                    [
                         $rangeLow,
                         $rangeHigh,
                         $total
-                    ),
+                    ],
                     $this->cObj->cObjGetSingle($conf['layout'], $conf['layout.'], 'layout')
                 );
                 if ($rangeHigh < $total) {
@@ -346,7 +346,7 @@ class SearchResultContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstra
     public function explodeCols($in)
     {
         $theArray = explode(':', $in);
-        $out = array();
+        $out = [];
         foreach ($theArray as $val) {
             $val = trim($val);
             $parts = explode('.', $val);
@@ -476,17 +476,17 @@ class SearchResultContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstra
             }
             if ($primary_table) {
                 // Initialize query parts:
-                $this->queryParts = array(
+                $this->queryParts = [
                     'SELECT' => '',
                     'FROM' => '',
                     'WHERE' => '',
                     'GROUPBY' => '',
                     'ORDERBY' => '',
                     'LIMIT' => ''
-                );
+                ];
                 // Find tables / field names to select:
-                $fieldArray = array();
-                $tableArray = array();
+                $fieldArray = [];
+                $tableArray = [];
                 foreach ($tables as $key => $val) {
                     $tableArray[] = $key;
                     $resultfields = $tables[$key]['resultfields'];
@@ -499,9 +499,9 @@ class SearchResultContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstra
                 $this->queryParts['SELECT'] = implode(',', $fieldArray);
                 $this->queryParts['FROM'] = implode(',', $tableArray);
                 // Set join WHERE parts:
-                $whereArray = array();
+                $whereArray = [];
                 $primary_table_and_key = $primary_table . '.' . $tables[$primary_table]['primary_key'];
-                $primKeys = array();
+                $primKeys = [];
                 foreach ($tables as $key => $val) {
                     $fkey = $tables[$key]['fkey'];
                     if ($fkey) {
@@ -544,11 +544,11 @@ class SearchResultContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstra
     public function build_search_query_for_searchwords()
     {
         if (is_array($this->sword_array)) {
-            $main_query_part = array();
+            $main_query_part = [];
             foreach ($this->sword_array as $key => $val) {
                 $s_sword = $this->sword_array[$key]['sword'];
                 // Get subQueryPart
-                $sub_query_part = array();
+                $sub_query_part = [];
                 $this->listOfSearchFields = '';
                 foreach ($this->tables as $key3 => $val3) {
                     $searchfields = $this->tables[$key3]['searchfields'];
