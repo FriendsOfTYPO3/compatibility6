@@ -10,7 +10,8 @@
 	"require-dev": {
 		"typo3/cms": "^7.6",
 		"phpunit/phpunit": "~4.8.0",
-		"mikey179/vfsStream": "1.6.0"
+		"mikey179/vfsStream": "1.6.0",
+		"friendsofphp/php-cs-fixer": "^2.0"
 	},
 	"replace": {
 		"compatibility6": "self.version",

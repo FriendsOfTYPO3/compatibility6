@@ -31,5 +31,9 @@ script:
     .Build/bin/phpunit -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml Tests/Unit
   - >
     echo;
+    echo "Running PHP CS Fixer";
+    .Build/bin/php-cs-fixer fix --dry-run --config=.php_cs.dist --diff --format=txt --path-mode=intersection --using-cache=no --verbose ./
+  - >
+    echo;
     echo "Running php lint";
     find . -name \*.php ! -path "./.Build/*" | parallel --gnu php -d display_errors=stderr -l {} > /dev/null \;
