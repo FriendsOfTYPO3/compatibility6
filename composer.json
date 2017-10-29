@@ -4,9 +4,13 @@
 	"description": "TYPO3 Core",
 	"homepage": "https://typo3.org",
 	"license": ["GPL-2.0+"],
-
 	"require": {
 		"typo3/cms-core": "*"
+	},
+	"require-dev": {
+		"typo3/cms": "^7.6",
+		"phpunit/phpunit": "~4.8.0",
+		"mikey179/vfsStream": "1.6.0"
 	},
 	"replace": {
 		"compatibility6": "self.version",
@@ -17,11 +21,24 @@
 			"class-alias-maps": [
 				"Migrations/Code/ClassAliasMap.php"
 			]
+		},
+		"typo3/cms": {
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": ".Build/Web"
 		}
 	},
 	"autoload": {
 		"psr-4": {
 			"TYPO3\\CMS\\Compatibility6\\": "Classes/"
 		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"TYPO3\\CMS\\Compatibility6\\Tests\\": "Tests/"
+		}
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin"
 	}
 }
