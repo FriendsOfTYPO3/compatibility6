@@ -8,6 +8,7 @@ $additionalColumns = [
         'label' => 'LLL:EXT:compatibility6/Resources/Private/Language/locallang.xlf:storage_pid',
         'config' => [
             'type' => 'group',
+            'default' => '0',
             'internal_type' => 'db',
             'allowed' => 'pages',
             'size' => '1',
