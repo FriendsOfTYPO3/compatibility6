@@ -14,8 +14,8 @@ namespace TYPO3\CMS\Compatibility6\ContentObject;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Resource\ResourceFactory;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Contains IMGTEXT content object.
@@ -34,7 +34,7 @@ class ImageTextContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractC
      * @param array $conf Array of TypoScript properties
      * @return string Output
      */
-    public function render($conf = array())
+    public function render($conf = [])
     {
         $content = '';
         if (isset($conf['text.'])) {
@@ -55,7 +55,7 @@ class ImageTextContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractC
             $imgPath = isset($conf['imgPath.']) ? $this->cObj->stdWrap($conf['imgPath'], $conf['imgPath.']) : $conf['imgPath'];
             // initialisation
             $caption = '';
-            $captionArray = array();
+            $captionArray = [];
             if (!$conf['captionSplit'] && !$conf['imageTextSplit'] && isset($conf['caption.'])) {
                 $caption = $this->cObj->cObjGet($conf['caption.'], 'caption.');
                 // Global caption, no splitting
@@ -133,7 +133,7 @@ class ImageTextContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractC
                 $maxW = ceil(($maxW - $colspacing * ($colCount - 1) - $colCount * $border * $borderThickness * 2) / $colCount);
             }
             // Create the relation between rows
-            $colMaxW = array();
+            $colMaxW = [];
             if ($colRelations) {
                 $rel_parts = explode(':', $colRelations);
                 $rel_total = 0;
@@ -147,7 +147,7 @@ class ImageTextContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractC
                     }
                     // The difference in size between the largest and smalles must be within a factor of ten.
                     if (min($colMaxW) <= 0 || max($rel_parts) / min($rel_parts) > 10) {
-                        $colMaxW = array();
+                        $colMaxW = [];
                     }
                 }
             }
@@ -155,7 +155,7 @@ class ImageTextContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractC
             $image_effects = isset($conf['image_effects.']) ? (int)$this->cObj->stdWrap($conf['image_effects'], $conf['image_effects.']) : (int)$conf['image_effects'];
             $image_frames = isset($conf['image_frames.']['key.']) ? (int)$this->cObj->stdWrap($conf['image_frames.']['key'], $conf['image_frames.']['key.']) : (int)$conf['image_frames.']['key'];
             // Fetches pictures
-            $splitArr = array();
+            $splitArr = [];
             $splitArr['imgObjNum'] = $conf['imgObjNum'];
             $splitArr = $GLOBALS['TSFE']->tmpl->splitConfArray($splitArr, $imgCount);
             // EqualHeight
@@ -164,8 +164,8 @@ class ImageTextContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractC
             if ($equalHeight) {
                 $gifCreator = GeneralUtility::makeInstance(\TYPO3\CMS\Frontend\Imaging\GifBuilder::class);
                 $gifCreator->init();
-                $relations = array();
-                $relations_cols = array();
+                $relations = [];
+                $relations_cols = [];
                 $totalMaxW = $maxW * $colCount;
                 for ($a = 0; $a < $imgCount; $a++) {
                     $imgKey = $a + $imgStart;
@@ -181,10 +181,10 @@ class ImageTextContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractC
                 }
             }
             // Contains the width of every image row
-            $imageRowsFinalWidths = array();
-            $imageRowsMaxHeights = array();
-            $imgsTag = array();
-            $origImages = array();
+            $imageRowsFinalWidths = [];
+            $imageRowsMaxHeights = [];
+            $imgsTag = [];
+            $origImages = [];
             for ($a = 0; $a < $imgCount; $a++) {
                 $GLOBALS['TSFE']->register['IMAGE_NUM'] = $a;
                 $GLOBALS['TSFE']->register['IMAGE_NUM_CURRENT'] = $a;
@@ -254,12 +254,12 @@ class ImageTextContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractC
                         $imgConf['longdescURL.'] = $conf['longdescURL.'];
                     }
                 } else {
-                    $imgConf = array(
+                    $imgConf = [
                         'altText' => $conf['altText'],
                         'titleText' => $conf['titleText'],
                         'longdescURL' => $conf['longdescURL'],
                         'file' => $totalImagePath
-                    );
+                    ];
                 }
                 $imgsTag[$imgKey] = $this->cObj->cObjGetSingle('IMAGE', $imgConf);
                 // Store the original filepath
@@ -298,7 +298,7 @@ class ImageTextContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractC
             $rowspan = ($rowspacing ? $rowCount * 2 - 1 : $rowCount) + $cap;
             // Edit icons:
             if (!is_array($conf['editIcons.'])) {
-                $conf['editIcons.'] = array();
+                $conf['editIcons.'] = [];
             }
             $editIconsHTML = $conf['editIcons'] && $GLOBALS['TSFE']->beUserLogin ? $this->cObj->editIcons('', $conf['editIcons'], $conf['editIcons.']) : '';
             // Strech out table:

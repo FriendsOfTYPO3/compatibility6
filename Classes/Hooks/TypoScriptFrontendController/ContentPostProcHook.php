@@ -14,8 +14,8 @@ namespace TYPO3\CMS\Compatibility6\Hooks\TypoScriptFrontendController;
  * The TYPO3 project - inspiring people to share!
  */
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Html\HtmlParser;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * Class that hooks into TypoScriptFrontendController to do XHTML cleaning and prefixLocalAnchors functionality
@@ -114,7 +114,6 @@ class ContentPostProcHook
         }
         return $this->pObj->config['config']['xhtml_cleaning'];
     }
-
 
     /**
      * Returns the mode of Local Anchor prefixing

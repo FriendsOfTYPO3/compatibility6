@@ -222,7 +222,7 @@ class TableRenderer
                 $res .= '<td' . $rowspan . '><span style="width: ' . $cMargArr[0] . 'px; height: 1px;"></span></td>';
             }
             // Content...
-            $middle = array();
+            $middle = [];
             if ($this->tm) {
                 $middle[] = '<td ' . $this->tmTDparams . '>' . $this->tm . '</td>';
             }

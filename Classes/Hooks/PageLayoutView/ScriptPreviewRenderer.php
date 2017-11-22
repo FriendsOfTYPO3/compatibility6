@@ -14,10 +14,10 @@ namespace TYPO3\CMS\Compatibility6\Hooks\PageLayoutView;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use TYPO3\CMS\Lang\LanguageService;
-use TYPO3\CMS\Backend\View\PageLayoutView;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 
 /**
  * Contains a preview rendering for the page module of CType="script"

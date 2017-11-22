@@ -25,7 +25,7 @@ class ColumnsContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractCon
      * @param array $conf Array of TypoScript properties
      * @return string Output
      */
-    public function render($conf = array())
+    public function render($conf = [])
     {
         if (empty($conf) || !empty($conf['if.']) && !$this->cObj->checkIf($conf['if.'])) {
             return '';
@@ -42,12 +42,12 @@ class ColumnsContentObject extends \TYPO3\CMS\Frontend\ContentObject\AbstractCon
         $rows = \TYPO3\CMS\Core\Utility\MathUtility::forceIntegerInRange($rows, 2, 20);
         $totalWidth = isset($conf['totalWidth.']) ? (int)$this->cObj->stdWrap($conf['totalWidth'], $conf['totalWidth.']) : (int)$conf['totalWidth'];
         $totalGapWidth = 0;
-        $gapData = array(
+        $gapData = [
             'gapWidth' => isset($conf['gapWidth.']) ? $this->cObj->stdWrap($conf['gapWidth'], $conf['gapWidth.']) : $conf['gapWidth'],
             'gapBgCol' => isset($conf['gapBgCol.']) ? $this->cObj->stdWrap($conf['gapBgCol'], $conf['gapBgCol.']) : $conf['gapBgCol'],
             'gapLineThickness' => isset($conf['gapLineThickness.']) ? $this->cObj->stdWrap($conf['gapLineThickness'], $conf['gapLineThickness.']) : $conf['gapLineThickness'],
             'gapLineCol' => isset($conf['gapLineCol.']) ? $this->cObj->stdWrap($conf['gapLineCol'], $conf['gapLineCol.']) : $conf['gapLineCol']
-        );
+        ];
         $gapData = $GLOBALS['TSFE']->tmpl->splitConfArray($gapData, $rows - 1);
         foreach ($gapData as $val) {
             $totalGapWidth += (int)$val['gapWidth'];

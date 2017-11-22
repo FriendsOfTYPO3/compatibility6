@@ -25,7 +25,7 @@ class ContentTableContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abstra
      * @param array $conf Array of TypoScript properties
      * @return string Output
      */
-    public function render($conf = array())
+    public function render($conf = [])
     {
         $controlTable = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(TableRenderer::class);
         $tableParams = isset($conf['tableParams.']) ? $this->cObj->stdWrap($conf['tableParams'], $conf['tableParams.']) : $conf['tableParams'];

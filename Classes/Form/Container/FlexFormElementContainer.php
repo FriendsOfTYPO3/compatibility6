@@ -15,13 +15,13 @@ namespace TYPO3\CMS\Compatibility6\Form\Container;
  */
 
 use TYPO3\CMS\Backend\Form\Container\AbstractContainer;
+use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Imaging\Icon;
 use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Type\Bitmask\JsConfirmation;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Lang\LanguageService;
-use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\Type\Bitmask\JsConfirmation;
-use TYPO3\CMS\Backend\Utility\BackendUtility;
 
 /**
  * The container handles single elements.
@@ -76,7 +76,7 @@ class FlexFormElementContainer extends AbstractContainer
 
                 $options = $this->data;
                 $options['flexFormDataStructureArray'] = $flexFormFieldArray['el'];
-                $options['flexFormRowData'] = is_array($flexFormRowData[$flexFormFieldName]['el']) ? $flexFormRowData[$flexFormFieldName]['el'] : array();
+                $options['flexFormRowData'] = is_array($flexFormRowData[$flexFormFieldName]['el']) ? $flexFormRowData[$flexFormFieldName]['el'] : [];
                 $options['flexFormSectionType'] = $flexFormFieldName;
                 $options['flexFormSectionTitle'] = $sectionTitle;
                 $options['renderType'] = 'flexFormSectionContainer';
@@ -89,19 +89,19 @@ class FlexFormElementContainer extends AbstractContainer
                         $value = 'v' . $value;
                     });
                 } else {
-                    $lkeys = array('vDEF');
+                    $lkeys = ['vDEF'];
                 }
-                $html = array();
+                $html = [];
                 foreach ($lkeys as $lkey) {
                     // Set up options for single element
-                    $fakeParameterArray = array(
-                        'fieldConf' => array(
+                    $fakeParameterArray = [
+                        'fieldConf' => [
                             'label' => $languageService->sL(trim($flexFormFieldArray['label'])),
                             'config' => $flexFormFieldArray['config'],
                             'defaultExtras' => $flexFormFieldArray['defaultExtras'],
                             'onChange' => $flexFormFieldArray['onChange'],
-                        ),
-                    );
+                        ],
+                    ];
 
                     $alertMsgOnChange = '';
                     if (
@@ -143,7 +143,7 @@ class FlexFormElementContainer extends AbstractContainer
                     $childResult = $this->nodeFactory->create($options)->render();
 
                     $theTitle = htmlspecialchars($fakeParameterArray['fieldConf']['label']);
-                    $defInfo = array();
+                    $defInfo = [];
 
                     // Possible line breaks in the label through xml: \n => <br/>, usage of nl2br() not possible, so it's done through str_replace (?!)
                     $processedTitle = str_replace('\\n', '<br />', $theTitle);

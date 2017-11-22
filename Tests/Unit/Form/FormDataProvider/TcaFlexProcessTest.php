@@ -16,9 +16,9 @@ namespace TYPO3\CMS\Compatibility6\Tests\Unit\Form\FormDataProvider;
 
 use Prophecy\Argument;
 use Prophecy\Prophecy\ObjectProphecy;
+use TYPO3\CMS\Compatibility6\Form\FormDataProvider\TcaFlexProcess;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Tests\UnitTestCase;
-use TYPO3\CMS\Compatibility6\Form\FormDataProvider\TcaFlexProcess;
 use TYPO3\CMS\Lang\LanguageService;
 
 /**
@@ -2265,7 +2265,6 @@ class TcaFlexProcessTest extends UnitTestCase
 
         $this->assertEquals($expected, $this->subject->addData($input));
     }
-
 
     /**
      * Date provider for addDataSetsLanguageFlags

@@ -25,7 +25,7 @@ class HorizontalRulerContentObject extends \TYPO3\CMS\Frontend\ContentObject\Abs
      * @param array $conf Array of TypoScript properties
      * @return string Output
      */
-    public function render($conf = array())
+    public function render($conf = [])
     {
         $lineThickness = isset($conf['lineThickness.']) ? $this->cObj->stdWrap($conf['lineThickness'], $conf['lineThickness.']) : $conf['lineThickness'];
         $lineThickness = \TYPO3\CMS\Core\Utility\MathUtility::forceIntegerInRange($lineThickness, 1, 50);
