@@ -125,10 +125,10 @@ class FlexFormElementContainer extends AbstractContainer
                     $originalFieldName = $parameterArray['itemFormElName'];
                     $fakeParameterArray['itemFormElName'] = $parameterArray['itemFormElName'] . $flexFormFormPrefix . '[' . $flexFormFieldName . '][' . $lkey . ']';
                     if ($fakeParameterArray['itemFormElName'] !== $originalFieldName) {
-    					if (!empty($fakeParameterArray['fieldChangeFunc']['TBE_EDITOR_fieldChanged'])) {
-        					$fakeParameterArray['fieldChangeFunc']['TBE_EDITOR_fieldChanged'] = str_replace($originalFieldName, $fakeParameterArray['itemFormElName'], $fakeParameterArray['fieldChangeFunc']['TBE_EDITOR_fieldChanged']);
-    					}
-        			}
+                        if (!empty($fakeParameterArray['fieldChangeFunc']['TBE_EDITOR_fieldChanged'])) {
+                            $fakeParameterArray['fieldChangeFunc']['TBE_EDITOR_fieldChanged'] = str_replace($originalFieldName, $fakeParameterArray['itemFormElName'], $fakeParameterArray['fieldChangeFunc']['TBE_EDITOR_fieldChanged']);
+                        }
+                    }
                     $fakeParameterArray['itemFormElID'] = $fakeParameterArray['itemFormElName'];
                     if (isset($flexFormRowData[$flexFormFieldName][$lkey])) {
                         $fakeParameterArray['itemFormElValue'] = $flexFormRowData[$flexFormFieldName][$lkey];
