@@ -518,9 +518,8 @@ class TcaFlexProcess implements FormDataProviderInterface
                             'Broken data structure on field name ' . $fieldName . '. section without type or vice versa is not allowed',
                             1440685208
                         );
-
-                        // A "normal" TCA element
                     } else {
+                        // A "normal" TCA element
                         foreach ($languagesOnElementLevel as $isoElementLevel) {
                             $langElementLevel = 'v' . $isoElementLevel;
                             $valueArray = [
