@@ -14,7 +14,6 @@
 		"friendsofphp/php-cs-fixer": "^2.0"
 	},
 	"replace": {
-		"compatibility6": "self.version",
 		"typo3/cms-compatibility6": "self.version",
 		"typo3-ter/compatibility6": "self.version"
 	},
@@ -25,6 +24,7 @@
 			]
 		},
 		"typo3/cms": {
+			"extension-key": "compatibility6",
 			"cms-package-dir": "{$vendor-dir}/typo3/cms",
 			"web-dir": ".Build/Web"
 		}
