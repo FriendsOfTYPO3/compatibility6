@@ -1,7 +1,7 @@
 {
 	"name": "friendsoftypo3/compatibility6",
 	"type": "typo3-cms-extension",
-	"description": "TYPO3 Core",
+	"description": "TYPO3 Core Compatibility Layer for TYPO3 v7 with added functionality previously present in TYPO3 v6.2",
 	"homepage": "https://typo3.org",
 	"license": "GPL-2.0-or-later",
 	"require": {
@@ -10,7 +10,7 @@
 	"require-dev": {
 		"typo3/cms": "^7.6",
 		"phpunit/phpunit": "~4.8.0",
-		"mikey179/vfsStream": "1.6.0",
+		"mikey179/vfsstream": "1.6.0",
 		"friendsofphp/php-cs-fixer": "^2.0"
 	},
 	"replace": {
