@@ -2,7 +2,11 @@
 	"name": "friendsoftypo3/compatibility6",
 	"type": "typo3-cms-extension",
 	"description": "TYPO3 Core Compatibility Layer for TYPO3 v7 with added functionality previously present in TYPO3 v6.2",
-	"homepage": "https://typo3.org",
+	"homepage": "https://extensions.typo3.org/extension/compatibility6/",
+	"support": {
+		"issues": "https://github.com/FriendsOfTYPO3/compatibility6/issues",
+		"source": "https://github.com/FriendsOfTYPO3/compatibility6"
+	},
 	"license": "GPL-2.0-or-later",
 	"require": {
 		"typo3/cms-core": "*"
